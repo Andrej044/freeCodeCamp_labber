@@ -28,8 +28,18 @@ const contacts = [
 
 function lookUpProfile(name, prop) {
   // Only change code below this line
-
+      let answer;  
+    for( let i=0; i<contacts.length; i++) {
+        if(contacts[i].firstName === name) {
+            if(contacts[i].hasOwnProperty(prop)) return contacts[i][prop];
+            else return answer = "No such property";
+        } else answer = "No such contact";
+    }
+    return answer;
   // Only change code above this line
 }
 
-lookUpProfile("Akira", "likes");
+let answer;
+answer = lookUpProfile("Kristan", "number");
+
+console.log(answer)
