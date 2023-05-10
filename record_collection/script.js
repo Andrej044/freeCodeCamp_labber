@@ -21,23 +21,19 @@ const recordCollection = {
 
 // Only change code below this line
 function updateRecords(records, id, prop, value) {
-
-  if(prop === "tracks" && value !== "") {
-   
-    Array.isArray(records[id][prop]) ? records[id][prop] : records[id][prop] = [];  
-    let arr = records[id][prop];
-   arr.push(value);
-   return records[id][prop] = arr;
-  };
-  
+// My issue
   if(value === "") delete records[id][prop];
-  else records[id][prop] = value;
+  else if(prop === "tracks") {
+    // hasOwnProperty     
+    if(!records[id].hasOwnProperty("tracks")) records[id][prop] = [];
+    records[id][prop].push(value);
+  } else records[id][prop] = value;
   
   return records;
 }
 
-updateRecords(recordCollection, 5439, 'artist', 'ABBA');
-// updateRecords(recordCollection, 5439, 'track', '');
+// updateRecords(recordCollection, 5439, 'artist', 'ABBA');
+// updateRecords(recordCollection, 1245, 'tracks', '');
 // updateRecords(recordCollection, 1245, "albumTitle", "Riptide")
 // updateRecords(recordCollection, 2548, "tracks", "")
 // updateRecords(recordCollection, 2468, "tracks", "Free")
